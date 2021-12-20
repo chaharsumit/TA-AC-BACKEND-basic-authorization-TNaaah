@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
   })
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', auth.UserLoggedIn,(req, res, next) => {
   req.body.author = req.user._id;
   Article.create(req.body, (err, article) => {
     if(err){
@@ -29,7 +29,7 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.get('/new', (req, res, next) => {
+router.get('/new', auth.UserLoggedIn,(req, res, next) => {
   res.render('createArticle');
 })
 
@@ -43,7 +43,7 @@ router.get('/:id', (req, res, next) => {
   })
 })
 
-router.get('/:id/like', (req, res, next) => {
+router.get('/:id/like', auth.UserLoggedIn, (req, res, next) => {
   let id = req.params.id;
   Article.findByIdAndUpdate(id, {$inc: {likes: 1}}, (err, article) => {
     if(err){
@@ -53,7 +53,7 @@ router.get('/:id/like', (req, res, next) => {
   })
 })
 
-router.get('/:id/dislike', (req, res, next) => {
+router.get('/:id/dislike', auth.UserLoggedIn, (req, res, next) => {
   let id = req.params.id;
   Article.findByIdAndUpdate(id, {$inc: {dislikes: 1}}, (err, article) => {
     if(err){
@@ -63,7 +63,7 @@ router.get('/:id/dislike', (req, res, next) => {
   })
 })
 
-router.post('/:id/comment', (req, res, next) => {
+router.post('/:id/comment', auth.UserLoggedIn, (req, res, next) => {
   let id = req.params.id;
   req.body.articleId = id;
   req.body.author = req.user.id;
@@ -81,6 +81,41 @@ router.post('/:id/comment', (req, res, next) => {
         }
         res.redirect('/articles/' + id);
       })
+    })
+  })
+})
+
+router.get('/:id/edit', auth.UserLoggedIn, (req, res, next) => {
+  let id = req.params.id;
+  Article.findById(id, (err, article) => {
+    if(err){
+      return next(err);
+    }
+    res.render('updateArticle', { article });
+  })
+})
+
+router.post('/:id/edit', auth.UserLoggedIn,(req, res, next) => {
+  let id = req.params.id;
+  Article.findByIdAndUpdate(id, req.body, (err, updatedArticle) => {
+    if(err){
+      return next(err);
+    }
+    res.redirect('/users/' + updatedArticle.author + '/info');
+  })
+})
+
+router.get('/:id/delete', auth.UserLoggedIn,(req, res, next) => {
+  let id = req.params.id;
+  Article.findByIdAndDelete(id, (err, deletedArticle) => {
+    if(err){
+      return next(err);
+    }
+    Comment.deleteMany({$exists: {author: deletedArticle.author}}, (err, deletedComments) => {
+      if(err){
+        return next(err);
+      }
+      res.redirect('/users/' + deletedArticle.author + '/info');
     })
   })
 })

@@ -54,7 +54,6 @@ router.post('/register', (req, res, next) => {
 
 router.get('/:id/info', auth.UserLoggedIn,(req, res, next) => {
   let id = req.params.id;
-
   Article.find({$exists: {author: id}}, (err, articles) => {
     if(err){
       return next(err);

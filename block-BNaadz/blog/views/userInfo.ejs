@@ -8,21 +8,27 @@
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/users/logout">Logout</a>
+    </nav>
+  </header>
   <h1><%= user.username %></h1>
   <h4><%= user.email %></h4>
 
   <h2>Articles</h2>
   <% articles.forEach(article => { %>
     <h2><%= article.title %></h2>
-    <a href="">edit</a>
-    <a href="">remove</a>
+    <a href="/articles/<%= article.id %>/edit">edit</a>
+    <a href="/articles/<%= article.id %>/delete">delete</a>
   <% }) %>
 
   <h2>Comments</h2>
   <% comments.forEach(comment => { %>
     <h2><%= comment.comment %></h2>
-    <a href="">edit</a>
-    <a href="">remove</a>
+    <a href="/comments/<%= comment.id %>/edit">edit</a>
+    <a href="/comments/<%= comment.id %>/delete">delete</a>
   <% }) %>
 </body>
 </html>
