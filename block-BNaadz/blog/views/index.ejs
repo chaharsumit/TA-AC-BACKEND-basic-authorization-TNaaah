@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Blog</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Welcome to Our Blog</h1>
+    <a href="/articles/new">Create An Article</a>
+    <a href="/articles">Go To Articles</a>
+    <% if(user){ %>
+      <a href="/users/<%= user.id %>/info">Your articles and Comments</a>
+    <% } %>
   </body>
 </html>

@@ -9,12 +9,12 @@
 </head>
 <body>
   <h1>Login</h1>
-  <form action="/users/Register">
-    <label for="username"></label>
-    <input type="text" name="name" id="username" placeholder="enter username">
-    <label for="email"></label>
+  <form action="/users/register" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" placeholder="enter username">
+    <label for="email">Email:</label>
     <input type="email" name="email" id="email" placeholder="enter email"> 
-    <label for="password"></label>
+    <label for="password">Password:</label>
     <input type="text" name="password" id="password" placeholder="enter password">
     <input type="submit" value="Register">
   </form>

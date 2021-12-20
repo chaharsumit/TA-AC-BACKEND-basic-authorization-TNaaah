@@ -9,11 +9,14 @@
 </head>
 <body>
   <h1>Login</h1>
-  <form action="/users/login">
-    <label for="email"></label>
+  <form action="/users/login" method="POST">
+    <% if(error){ %>
+      <%= error %>
+    <% } %>
+    <label for="email">Email:</label>
     <input type="email" name="email" id="email" placeholder="enter email"> 
-    <label for="password"></label>
-    <input type="text" name="passowrd" id="password" placeholder="enter password">
+    <label for="password">Password:</label>
+    <input type="text" name="password" id="password" placeholder="enter password">
     <input type="submit" value="login">
   </form>
 </body>

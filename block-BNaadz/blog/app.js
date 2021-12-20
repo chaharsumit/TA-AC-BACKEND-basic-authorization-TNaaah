@@ -3,15 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var sesion = require('express-session');
+var session = require('express-session');
 var mongoose= require('mongoose');
 var MongoStore = require('connect-mongo');
 var flash = require('connect-flash');
 
-require(dotenv).config();
+require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var articlesRouter = require('./routes/articles');
+var commentsRouter = require('./routes/comments');
+
+var auth = require('./middlewares/auth');
 
 mongoose.connect('mongodb://localhost/blog', (err) => {
   console.log(err ? err : "Database is connected successfully");
@@ -38,8 +42,12 @@ app.use(session({
 
 app.use(flash());
 
+app.use(auth.userInfo);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/articles', articlesRouter);
+app.use('/comments', commentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
