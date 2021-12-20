@@ -7,6 +7,7 @@ var session = require('express-session');
 var mongoose= require('mongoose');
 var MongoStore = require('connect-mongo');
 var flash = require('connect-flash');
+var auth = require('./middlewares/auth');
 
 require('dotenv').config();
 
@@ -36,6 +37,9 @@ app.use(session({
 }))
 
 app.use(flash());
+
+app.use(auth.userInfo);
+app.use(auth.adminInfo);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
