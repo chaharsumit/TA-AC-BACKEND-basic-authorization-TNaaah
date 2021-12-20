@@ -3,19 +3,23 @@ var router = express.Router();
 
 /* GET users listing. */
 
+router.get('/', (req, res, next) => {
+  res.render('admin');
+})
+
 router.get('/login', (req, res, next) => {
   let error = req.flash("error");
-  res.render('userLogin', { error });
+  res.render('adminLogin', { error });
 })
 
 
 router.get('/register', (req, res, next) => {
   let error = req.flash("error");
-  res.render('userRegister', { error });
+  res.render('adminRegister', { error });
 }) 
 
 router.post('/', (req, res, next) => {
-  User.create(req.body, (err, user) => {
+  admin.create(req.body, (err, admin) => {
     if(err){
       return next(err);
     }
@@ -27,25 +31,25 @@ router.post('/login', (req, res, next) => {
   let { email, password } = req.body;
   if(!email || !password){
     req.flash("error", "Email/Password required");
-    return res.redirect('/users/login');
+    return res.redirect('/admin/login');
   }
-  User.find({ email }, (err, user) => {
+  admin.find({ email }, (err, admin) => {
     if(err){
       return next(err);
     }
-    if(!user){
-      req.flash("error", "User not found kindly register first");
-      return res.redirect('/users/register');
+    if(!admin){
+      req.flash("error", "admin not found kindly register first");
+      return res.redirect('/admin/register');
     }
-    user.verifyPassword(password, (err, result) => {
+    admin.verifyPassword(password, (err, result) => {
       if(err){
         return next(err);
       }
       if(!result){
         req.flash("error", "Password incorrect");
-        return res.redirect('/users/login');
+        return res.redirect('/admin/login');
       }
-      req.session.userId = user.id;
+      req.session.adminId = admin.id;
       res.redirect('/');
     })
   })
