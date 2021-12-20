@@ -91,7 +91,12 @@ router.get('/:id/edit', auth.UserLoggedIn, (req, res, next) => {
     if(err){
       return next(err);
     }
-    res.render('updateArticle', { article });
+    if(req.user.id === article.author.toString()){
+      res.render('updateArticle', { article });
+    }else{
+      req.flash("error", "ids dont match");
+      res.redirect('/articles/' + id);
+    }
   })
 })
 
