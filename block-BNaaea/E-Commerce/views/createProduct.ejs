@@ -1,0 +1,15 @@
+<% include partials/header %>
+<section class="container flex forms">
+
+  <form action="/products" method="POST" class="flex">
+    <label for="productname">Product Name</label>
+    <input type="text" name="name" id="productname" placeholder="Enter Name">
+    <label for="image">Image Link</label>
+    <input type="text" name="image" id="image" placeholder="Enter image link">
+    <label for="price">Price</label>
+    <input type="Number" name="price" id="price" placeholder="Enter Price">
+    <input type="submit" value="Add Product">
+  </form>
+
+</section>
+<% include partials/footer %>

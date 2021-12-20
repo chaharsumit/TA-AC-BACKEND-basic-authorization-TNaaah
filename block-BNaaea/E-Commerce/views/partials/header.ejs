@@ -12,9 +12,20 @@
     <nav class="container flex">
       <a href="/">Shop</a>
       <ul class="flex">
-        <li class="nav-item"><a href="/users/login">Login</a></li>
-        <li class="nav-item"><a href="/users/Register">Register</a></li>
-        <li class="nav-item"><a href="/admin">Admin-Access</a></li>
+        <% if(!user && !admin){ %>
+          <li class="nav-item"><a href="/users/login">Login</a></li>
+          <li class="nav-item"><a href="/users/Register">Register</a></li>
+          <li class="nav-item"><a href="/admin">Admin-Access</a></li>
+        <% } %>
+        <% if(user){ %>
+          <li class="nav-item"><%= user.userName %></li>
+          <li class="nav-item"><a href="/users/logout">Logout</a></li>
+        <% } %>
+        <% if(admin){ %>
+          <li class="nav-item"><%= admin.adminName %></li>
+          <li class="nav-item"><a href="/products/new">Add Product</a></li>
+          <li class="nav-item"><a href="/admin/logout">Logout</a></li>
+        <% } %>
       </ul>
     </nav>
   </header>

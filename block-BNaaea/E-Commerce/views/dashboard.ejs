@@ -1,0 +1,44 @@
+<% include partials/header %>
+
+<section class="dashboard container">
+  <article class="dashboard-content flex">
+    <h1>Products</h1>
+      <div class="products-parent flex">
+      <% products.forEach(product => { %>
+        <div class="flex products-container">
+          <div class="products-data">
+            <h3><%= product.name %></h3>
+            <p><%= product.price %></p>
+            <a href="/products/<%= product.id %>/edit">Edit Product</a>
+            <br>
+            <a href="/products/<%= product.id %>/delete">Delete Product</a>
+          </div>
+          <div class="dash-image-container">
+            <img src="<%= product.image %>" alt="image" class="dash-image">
+          </div>
+        </div>
+      <% }) %> 
+    </div>
+  </article>
+  <article class="dashboard-content flex">
+    <h1>Users</h1>
+    <div class="flex products-container">
+      <p>lorem</p>
+      <p>lorem</p>
+      <a href="/products/edit">Edit Product</a>
+      <a href="/products/delete">Delete Product</a>
+    </div>
+    <div class="flex products-container">
+      <p>lorem</p>
+      <p>lorem</p>
+      <a href="/products/edit">Edit Product</a>
+      <a href="/products/delete">Delete Product</a>
+    </div>
+    <div class="flex products-container">
+      <p>lorem</p>
+      <p>lorem</p>
+      <a href="/products/edit">Edit Product</a>
+      <a href="/products/delete">Delete Product</a>
+    </div>  
+  </article>
+</section>

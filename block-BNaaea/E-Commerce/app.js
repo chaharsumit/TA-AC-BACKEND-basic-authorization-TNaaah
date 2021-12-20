@@ -14,6 +14,7 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var productRouter = require('./routes/product');
 
 mongoose.connect('mongodb://localhost/Ecommerce', (err) => {
   console.log(err ? err : "Database is connected successfully");
@@ -45,6 +46,7 @@ app.use(auth.adminInfo);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/products', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

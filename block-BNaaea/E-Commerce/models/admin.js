@@ -6,7 +6,7 @@ let Schema = mongoose.Schema;
 let adminSchema = new Schema({
   adminName: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, minlength: 5 }
+  password: { type: String, required: true, minlength: 4 }
 }, { timestamps: true });
 
 adminSchema.pre("save", function(next){
@@ -23,7 +23,7 @@ adminSchema.pre("save", function(next){
   }
 })
 
-adminSchema.verifyPassword = function(password, cb){
+adminSchema.methods.verifyPassword = function(password, cb){
   bcrypt.compare(password, this.password, (err, result) => {
     return cb(err, result);
   })
