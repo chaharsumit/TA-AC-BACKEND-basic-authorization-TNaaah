@@ -66,7 +66,7 @@ a{
 }
 
 header{
-  background-color: aliceblue;
+  background-color: orange;
 }
 
 header nav{
@@ -77,12 +77,17 @@ header nav{
   margin-left: 1rem;
 }
 
+.nav-item a{
+  color: white;
+}
+
 footer{
-  background-color: aliceblue;
-  position: absolute;
+  background-color: orange;
+  position: fixed;
   width: 100vw;
   bottom: 0;
   text-align: center;
+  color: white;
 }
 
 form{
@@ -105,6 +110,29 @@ input[type="submit"]{
   background-color: orange;
   color: white;
   font-size: 1.2rem;
+}
+
+.index{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  gap: 1rem;
+}
+
+.index a{
+  padding: 1rem;
+  background-color: orange;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  color: white;
+}
+
+h1{
+  color: orange;
+  font-size: 3rem;
+  font-weight: 300;
+  text-decoration: underline;
 }
 
 .forms{
@@ -133,4 +161,41 @@ input[type="submit"]{
   border-radius: 1rem;
   background-color: orange;
   color: white;
+}
+
+.dashboard{
+  padding: 2rem 0 5rem 0;
+}
+
+.dashboard-content{
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.products-parent{
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.products-container{
+  flex: 0 1 48%;
+  flex-direction: row;
+  border: 0.05rem solid #9e9b9b;
+  border-radius: 1rem;
+  width: 100%;
+  padding: 1rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.products-data, .dash-image-container{
+  flex: 0 1 45%;
+}
+
+.dash-image{
+  width: 100%;
+  height: 200px;
+  display: block;
 }

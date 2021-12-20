@@ -1,0 +1,40 @@
+var express = require('express');
+var Product = require('../models/product');
+var router = express.Router();
+
+/* GET home page. */
+router.get('/new', (req, res, next) => {
+  res.render('createProduct');
+})
+
+router.post('/', (req, res, next) => {
+  req.body.adminId = req.admin.id;
+  Product.create(req.body, (err, product) => {
+    if(err){
+      return next(err);
+    }
+    res.redirect('/admin/dashboard');
+  })
+})
+
+router.get('/:id/edit', (req, res, next) => {
+  let id = req.params.id;
+  Product.findById(id, (err, product) => {
+    if(err){
+      return next(err);
+    }
+    res.render('editProduct', { product });
+  })
+})
+
+router.post('/:id/edit', (req, res, next) => {
+  let id = req.params.id;
+  Product.findByIdAndUpdate(id, req.body, (err, updatedProduct) => {
+    if(err){
+      return next(err);
+    }
+    res.redirect('/admin/dashboard');
+  })
+});
+
+module.exports = router;
