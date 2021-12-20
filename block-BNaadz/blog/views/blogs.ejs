@@ -16,11 +16,13 @@
   </header>
   <section class="blogs-container">
     <h1>Our Blogs</h1>
-    <article>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab alias, unde eaque ea cupiditate aliquid itaque. Et, eum. Est at voluptatibus, exercitationem tenetur veniam dolores voluptatem necessitatibus beatae! Magni, repellendus! Ut sunt dolor eos assumenda hic? Vel, dolores minima vitae omnis, est delectus molestiae consequuntur consequatur quam necessitatibus pariatur qui!</p>
-      <cite>Sumit Chahar</cite>
-      <a href="/">show more</a>
-    </article>
+    <% articles.forEach(article => { %>
+      <article>
+        <h2><%= article.title %></h2>
+        <cite><%= article.author.username %> <br> <%= article.author.email %></cite>
+        <a href="/articles/<%= article.id %>">show more</a>
+      </article>
+    <% }) %>
   </section>
 </body>
 </html>

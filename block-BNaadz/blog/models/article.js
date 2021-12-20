@@ -6,8 +6,9 @@ let articleSchema = new Schema({
   title: String,
   description: String,
   likes: { type: Number, default: 0 },
+  dislikes: { type: Number, default: 0 },
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
-  author: { type: Schema.Types.ObjectId, ref: "Users" },
+  author: { type: Schema.Types.ObjectId, ref: "User" },
   slug: String,
 }, { timestamps: true });
 
