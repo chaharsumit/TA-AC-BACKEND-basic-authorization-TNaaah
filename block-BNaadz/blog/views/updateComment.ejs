@@ -14,13 +14,11 @@
       <a href="/users/logout">Logout</a>
     </nav>
   </header>
-  <h1>Write an article</h1>
-  <form action="/articles" method="POST">
-    <label for="title">title</label>
-    <input type="text" name="title" id="title" placeholder="Enter Title">
-    <label for="description">description</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
-    <input type="submit" value="Create">
+  <form action="/comments/<%= comment.id %>/edit" method="POST">
+    <textarea name="comment" cols="30" rows="10">
+      <%= comment.comment %>
+    </textarea>
+    <input type="submit" value="Edit Comment">
   </form>
 </body>
 </html>

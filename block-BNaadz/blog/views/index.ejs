@@ -11,5 +11,8 @@
     <% if(user){ %>
       <a href="/users/<%= user.id %>/info">Your articles and Comments</a>
     <% } %>
+    <% if(user){ %>
+      <a href="/users/logout">Logout</a>
+    <% } %>
   </body>
 </html>

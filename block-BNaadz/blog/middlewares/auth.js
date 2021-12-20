@@ -1,5 +1,6 @@
 var User = require('../models/user');
-
+var Article = require('../models/article');
+var Comment = require('../models/comment');
 module.exports = {
   UserLoggedIn: (req, res, next) => {
     if(req.session && req.session.userId){
@@ -26,5 +27,5 @@ module.exports = {
       res.locals.user = null;
       next();
     }
-  }
+  },
 }
