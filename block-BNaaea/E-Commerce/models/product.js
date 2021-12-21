@@ -8,6 +8,7 @@ let productSchema = new Schema({
   price: Number,
   image: String,
   likes: { type: Number, default: 0 },
+  category: [ {type: String} ],
   comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
   adminId: { type: Schema.Types.ObjectId, ref: "Admin" }
 }, { timestamps: true });

@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+<section class="container">
+  <h1>welcome to cart</h1>
+  <ul>
+    <% cart.products.forEach(product => { %>
+      <li><%= product.name %></li>
+    <% }) %>
+  </ul>
+</section>
+
+<% include partials/footer %>

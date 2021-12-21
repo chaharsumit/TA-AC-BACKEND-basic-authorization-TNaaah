@@ -2,9 +2,10 @@
 
 <section>
   <div class="container">
-    <h1><%= product.name %></h1>
+    <h2><%= product.name %></h2>
     <h3><%= product.price %></h3>
     <h3><%= product.quantity %></h3>
+    <a href="/users/<%= product.id %>/cart/add">add to cart</a>
   </div>
 </section>
 

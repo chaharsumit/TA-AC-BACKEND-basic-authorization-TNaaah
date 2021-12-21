@@ -19,6 +19,7 @@
         <% } %>
         <% if(user){ %>
           <li class="nav-item"><%= user.userName %></li>
+          <li class="nav-item"><a href="/users/<%= user.id %>/cart">Cart</a></li>
           <li class="nav-item"><a href="/users/logout">Logout</a></li>
         <% } %>
         <% if(admin){ %>
