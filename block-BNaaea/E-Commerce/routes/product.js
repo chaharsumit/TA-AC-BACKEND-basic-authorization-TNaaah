@@ -3,8 +3,27 @@ var Product = require('../models/product');
 var router = express.Router();
 
 /* GET home page. */
+router.get('/', (req, res, next) => {
+  Product.find({}, (err, products) => {
+    if(err){
+      return next(err);
+    }
+    res.render('shop', { products });
+  })
+})
+
 router.get('/new', (req, res, next) => {
   res.render('createProduct');
+})
+
+router.get('/:id', (req, res, next) => {
+  let id = req.params.id;
+  Product.findById(id, (err, product) => {
+    if(err){
+      return next(err);
+    }
+    res.render('productDetails', { product });
+  })
 })
 
 router.post('/', (req, res, next) => {
