@@ -12,7 +12,6 @@ router.get('/login', (req, res, next) => {
   res.render('userLogin', { error });
 })
 
-
 router.get('/register', (req, res, next) => {
   let error = req.flash("error");
   res.render('userRegister', { error });
@@ -94,12 +93,13 @@ router.post('/login', (req, res, next) => {
         return res.redirect('/users');
       }
       req.session.userId = user.id;
+      req.body.user = user.id;
       Cart.findOne({user: user.id}, (err, cart) => {
         if(err){
           return next(err);
         }
         if(!cart){
-          Cart.create({user: user.id}, (err, cart) => {
+          Cart.create(req.body, (err, cart) => {
             if(err){
               return next(err);
             }
