@@ -1,0 +1,13 @@
+<% include partials/header %>
+
+<section class="container">
+  <form action="/comments/<%= comment.id %>" method="POST">
+    <label for="comment">Your Comment</label>
+    <textarea name="comment" id="comment" cols="30" rows="10">
+      <%= comment.comment %>
+    </textarea>
+    <input type="submit" value="Edit Comment">
+  </form>
+</section>
+
+<% include partials/footer %>

@@ -3,7 +3,7 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let cartSchema = new Schema({
-  products: [{ type: Schema.Types.ObjectId, ref: "Product", unique: true }],
+  products: [{ type: Schema.Types.ObjectId, ref: "Product" }],
   user: { type: Schema.Types.ObjectId, ref: "User" }
 }, { timestamps: true });
 
