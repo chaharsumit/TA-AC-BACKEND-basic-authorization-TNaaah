@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+  <header>
+    <nav class="container flex">
+      <a href="/">Shop</a>
+      <ul class="flex">
+        <% if(!user && !admin){ %>
+          <li class="nav-item"><a href="/users/login">Login</a></li>
+          <li class="nav-item"><a href="/users/Register">Register</a></li>
+          <li class="nav-item"><a href="/admin">Admin-Access</a></li>
+        <% } %>
+        <% if(user){ %>
+          <li class="nav-item"><%= user.userName %></li>
+          <li class="nav-item"><a href="/users/<%= user.id %>/cart">Cart</a></li>
+          <li class="nav-item"><a href="/users/logout">Logout</a></li>
+        <% } %>
+        <% if(admin){ %>
+          <li class="nav-item"><%= admin.adminName %></li>
+          <li class="nav-item"><a href="/products/new">Add Product</a></li>
+          <li class="nav-item"><a href="/admin/logout">Logout</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>

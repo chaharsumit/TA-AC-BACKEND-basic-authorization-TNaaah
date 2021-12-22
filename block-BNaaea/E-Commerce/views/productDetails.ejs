@@ -1,0 +1,42 @@
+<% include partials/header %>
+
+<section>
+  <div class="container">
+    <h2><%= product.name %></h2>
+    <h3><%= product.price %></h3>
+    <h3><%= product.quantity %></h3>
+    <a href="/users/<%= product.id %>/cart/add">add to cart</a>
+    <div>
+      <h5>Quantity</h5>
+      <a href="/products/<%= product.id %>/quantityInc">+</a>
+      <p><%= product.quantity %></p>
+      <a href="/products/<%= product.id %>/quantityDec">-</a>
+    </div>
+    <div>
+      <p><%= product.likes %></p>
+      <a href="/products/<%= product.id %>/like">like</a>
+    </div>
+    <div>
+      <p><%= product.dislikes %></p>
+      <a href="/products/<%= product.id %>/dislike">dislike</a>
+    </div>
+  </div>
+  <div class="container">
+    <h2>Add a Comment</h2>
+    <form action="/products/<%= product.id %>/comment" method="POST">
+      <textarea name="comment" id="" cols="30" rows="10" placeholder="Type comment here"></textarea>
+      <input type="submit" value="Add comment">
+    </form>
+    <h3>Comments:</h3>
+    <% product.comments.forEach(comment => { %>
+      <p><%= comment.comment %></p>
+      <span><%= comment.likes %></span><a href="/comments/<%= comment.id %>/like">like</a>
+      <br>
+      <span><%= comment.dislikes %></span><a href="/comments/<%= comment.id %>/dislike">dislike</a>
+      <br>
+      <a href="/comments/<%= comment.id %>/delete">dislike</a>
+    <% }) %>
+  </div>
+</section>
+
+<% include partials/footer %>

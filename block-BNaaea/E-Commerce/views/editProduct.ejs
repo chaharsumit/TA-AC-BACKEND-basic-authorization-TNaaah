@@ -1,0 +1,13 @@
+<% include partials/header %>
+<section class="container flex forms">
+
+  <form action="/products/<%= product.id %>/edit" method="POST" class="flex">
+    <label for="productname">Product Name</label>
+    <input type="text" name="name" id="productname" value="<%= product.name %>">
+    <label for="price">Price</label>
+    <input type="Number" name="price" id="price" value="<%= product.price %>">
+    <input type="submit" value="Edit Product">
+  </form>
+
+</section>
+<% include partials/footer %>

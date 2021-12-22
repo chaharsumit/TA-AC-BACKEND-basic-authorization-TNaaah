@@ -1,0 +1,13 @@
+<% include partials/header %>
+<section class="container flex forms">
+  <form action="/admin" method="POST" class="flex">
+    <label for="adminname">Name</label>
+    <input type="text" name="adminName" id="adminname" placeholder="Enter Name">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" placeholder="Enter Email">
+    <label for="password">Password</label>
+    <input type="text" name="password" id="password" placeholder="Enter Password">
+    <input type="submit" value="Register">
+  </form>
+</section>
+<% include partials/footer %>
