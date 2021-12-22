@@ -11,15 +11,6 @@ router.get('/', (req, res, next) => {
   res.render('admin');
 })
 
-router.get('/dashboard', (req, res, next) => {
-  Product.find({}, (err, products) => {
-    if(err){
-      return next(err);
-    }
-    res.render('dashboard', { products });
-  })
-})
-
 router.get('/login', (req, res, next) => {
   let error = req.flash("error");
   res.render('adminLogin', { error });
@@ -68,10 +59,25 @@ router.post('/login', (req, res, next) => {
   })
 })
 
-router.get('/logout', (req, res, next) => {
+router.get('/logout', auth.adminLoggedIn, (req, res, next) => {
   req.session.destroy();
   res.clearCookie("connect.sid");
   res.redirect('/');
 })
+
+router.get('/dashboard', auth.adminLoggedIn, (req, res, next) => {
+  Product.find({}, (err, products) => {
+    if(err){
+      return next(err);
+    }
+    User.find({}, (err, users) => {
+      if(err){
+        return next(err);
+      }
+      res.render('dashboard', { products, users });
+    })
+  })
+})
+
 
 module.exports = router;

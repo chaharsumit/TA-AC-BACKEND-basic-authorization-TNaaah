@@ -6,7 +6,8 @@ let Schema = mongoose.Schema;
 let userSchema = new Schema({
   userName: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, minlength: 5}
+  password: { type: String, required: true, minlength: 5},
+  isBlocked: { type: Boolean, default: false }
 }, { timestamps: true });
 
 userSchema.pre("save", function(next){

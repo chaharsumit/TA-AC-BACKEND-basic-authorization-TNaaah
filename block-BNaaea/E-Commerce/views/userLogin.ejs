@@ -1,5 +1,9 @@
 <% include partials/header %>
+
 <section class="container flex forms">
+  <% if(error){ %>
+    <p><%= error %></p>
+  <% } %>
   <form action="/users/login" method="POST" class="flex">
     <label for="email">Email</label>
     <input type="text" name="email" id="email" placeholder="Enter Email">

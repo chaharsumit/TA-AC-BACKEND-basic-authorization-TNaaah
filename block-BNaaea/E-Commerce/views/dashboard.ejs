@@ -20,25 +20,15 @@
       <% }) %> 
     </div>
   </article>
+
   <article class="dashboard-content flex">
     <h1>Users</h1>
-    <div class="flex products-container">
-      <p>lorem</p>
-      <p>lorem</p>
-      <a href="/products/edit">Edit Product</a>
-      <a href="/products/delete">Delete Product</a>
-    </div>
-    <div class="flex products-container">
-      <p>lorem</p>
-      <p>lorem</p>
-      <a href="/products/edit">Edit Product</a>
-      <a href="/products/delete">Delete Product</a>
-    </div>
-    <div class="flex products-container">
-      <p>lorem</p>
-      <p>lorem</p>
-      <a href="/products/edit">Edit Product</a>
-      <a href="/products/delete">Delete Product</a>
-    </div>  
+    <% users.forEach(user => { %>
+      <div class="flex products-container">
+        <p><%= user.userName %></p>
+        <a href="/users/<%= user.id %>/block">Block User</a>
+        <a href="/users/<%= user.id %>/unblock">Unblock User</a>
+      </div>
+    <% }) %>
   </article>
 </section>
