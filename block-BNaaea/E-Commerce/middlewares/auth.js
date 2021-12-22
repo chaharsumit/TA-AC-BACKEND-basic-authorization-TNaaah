@@ -7,7 +7,7 @@ module.exports = {
       next();
     }else{
       req.flash('error', "You haven't logged in yet, Please login to continue!!");
-      res.redirect("/users/user/login");
+      res.redirect("/users/login");
     }
   },
   adminLoggedIn: (req, res, next) => {
@@ -15,7 +15,7 @@ module.exports = {
       next();
     }else{
       req.flash('error', "You haven't logged in as admin, Please login as admin to continue!!");
-      res.redirect("/users/admin/login");
+      res.redirect("/admin/login");
     }
   },
   userInfo: (req, res, next) => {
