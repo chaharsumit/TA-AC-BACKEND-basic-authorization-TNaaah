@@ -7,11 +7,13 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo');
 var flash = require('connect-flash');
+var auth = require('./middlewares/auth');
 
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adminRouter = require('./router/admin');
 
 mongoose.connect('mongodb://localhost/podcast', (err) =>{
   console.log(err ? err : "Database is connected successfully");
@@ -37,8 +39,12 @@ app.use(session({
 
 app.use(flash());
 
+app.use(auth.UserInfo);
+app.use(auth.AdminInfo);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
