@@ -4,9 +4,7 @@ let bcrypt = require('bcrypt');
 let Schema = mongoose.Schema;
 
 let podcastSchema = new Schema({
-  isFree: { type: Boolean, default: false },
-  isVIP: { type: Boolean, default: false },
-  isPremium: { type: Boolean, default: false },
+  podcastType: String,
   isVerified: { type: Boolean, default: false }
 }, { timestamps: true });
 

@@ -8,7 +8,7 @@ let userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 4 },
   userPodcasts: [{ type: Schema.Types.ObjectId, ref: "Podcast" }],
-  type: String
+  userType: String
 }, { timestamps: true });
 
 userSchema.pre("save", function(next){
