@@ -4,7 +4,7 @@ let Admin = require('../models/Admin');
 module.exports = {
   UserLoggedIn: (req, res, next) => {
     if(req.session && req.session.userId){
-      next();
+      return next();
     }else{
       req.flash("error", "You must login to continue");
       res.redirect('/users/login');
@@ -12,16 +12,16 @@ module.exports = {
   },
   AdminLoggedIn: (req, res, next) => {
     if(req.session && req.session.adminId){
-      next();
+      return next();
     }else{
       req.flash("error", "You must login to continue");
       res.redirect('/admin/login');
     }
   },
   UserInfo: (req, res, next) => {
-    let userId = req.session && req.session.userId;
+    var userId = req.session && req.session.userId;
     if(userId){
-      User.findById(userId, "email name", (err, user) => {
+      User.findById(userId, "name email", (err, user) => {
         if(err){
           return next(err);
         }
@@ -29,10 +29,14 @@ module.exports = {
         res.locals.user = user;
         next();
       })
+    }else{
+      req.user = null;
+      res.locals.user = null;
+      next()
     }
   },
   AdminInfo: (req, res, next) => {
-    let adminId = req.session && req.session.adminId;
+    var adminId = req.session && req.session.adminId;
     if(adminId){
       Admin.findById(adminId, "email name", (err, admin) => {
         if(err){
@@ -42,6 +46,10 @@ module.exports = {
         res.locals.admin = admin;
         next();
       })
+    }else{
+      req.admin = null;
+      res.locals.admin = null;
+      next()
     }
   }
 }
