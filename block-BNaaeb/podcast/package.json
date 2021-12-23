@@ -1,5 +1,5 @@
 {
-  "name": "podcast",
+  "name": "newpodcat",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "express": "~4.16.1",
     "express-session": "^1.17.2",
     "http-errors": "~1.6.3",
-    "mongoose": "^6.1.2",
+    "mongoose": "^6.1.3",
     "morgan": "~1.9.1"
   }
 }

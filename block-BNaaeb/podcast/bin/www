@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('podcast:server');
+var debug = require('debug')('newpodcat:server');
 var http = require('http');
 
 /**
