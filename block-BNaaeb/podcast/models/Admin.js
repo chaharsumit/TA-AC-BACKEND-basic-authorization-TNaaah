@@ -7,7 +7,6 @@ let adminSchema = new Schema({
   name: String,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 4 },
-  adminPodcasts: [{ type: Schema.Types.ObjectId, ref: "Podcast" }]
 }, { timestamps: true });
 
 adminSchema.pre("save", function(next){
