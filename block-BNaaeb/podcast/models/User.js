@@ -7,7 +7,6 @@ let userSchema = new Schema({
   name: String,
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minlength: 4 },
-  userPodcasts: [{ type: Schema.Types.ObjectId, ref: "Podcast" }],
   userType: String
 }, { timestamps: true });
 
