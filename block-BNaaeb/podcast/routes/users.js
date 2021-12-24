@@ -1,5 +1,6 @@
 var express = require('express');
 var User = require('../models/User');
+const UserPodcast = require('../models/UserPodcast');
 var router = express.Router();
 
 /* GET users listing. */
@@ -9,7 +10,12 @@ router.get('/', (req, res, next) => {
     if(err){
       return next(err);
     }
-    res.render('userDashboard', { user });
+    UserPodcast.find({author: user.id}, (err, userPodcasts) => {
+      if(err){
+        return next(err);
+      }
+      res.render('userDashboard', { user, userPodcasts });
+    })
   })
 })
 

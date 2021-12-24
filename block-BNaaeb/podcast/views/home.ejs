@@ -7,16 +7,15 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>welcome user</h1>
-  <a href="/users/logout">logout</a>
-  <a href="/podcast/<%= user.id %>/new">add podcast</a>
+  <h1>PODCASTS</h1>
+  <h2>admin podcast</h2>
+  <% adminPodcasts.forEach(podcast => { %>
+    <p><%= podcast.title %></p>
+  <% }) %>
+  <hr>
   <h2>user podcasts</h2>
   <% userPodcasts.forEach(podcast => { %>
-    <div>
-      <p><%= podcast.title %></p>
-      <a href="/podcast/users/<%= podcast.id %>/edit">edit podcast</a>
-      <a href="/podcast/users/<%= podcast.id %>/delete">delete podcast</a>
-    </div>
+    <p><%= podcast.title %></p>
   <% }) %>
 </body>
 </html>
