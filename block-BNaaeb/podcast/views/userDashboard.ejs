@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>welcome user</h1>
+  <a href="/users/logout">logout</a>
+  <a href="/podcast/<%= user.id %>/new">add podcast</a>
+  <h2>user podcasts</h2>
+  <% userPodcasts.forEach(podcast => { %>
+    <div>
+      <p><%= podcast.title %></p>
+      <a href="/podcast/users/<%= podcast.id %>/edit">edit podcast</a>
+      <a href="/podcast/users/<%= podcast.id %>/delete">delete podcast</a>
+    </div>
+  <% }) %>
+</body>
+</html>
