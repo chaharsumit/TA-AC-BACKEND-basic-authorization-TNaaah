@@ -1,5 +1,7 @@
 let express = require('express');
 let Admin = require('../models/Admin');
+let AdminPodcast = require('../models/AdminPodcast');
+let UserPodcast = require('../models/UserPodcast');
 let router = express.Router();
 
 
@@ -8,7 +10,17 @@ router.get('/', (req, res, next) => {
     if(err){
       return next(err);
     }
-    res.render('adminDashboard', { admin });
+    AdminPodcast.find({author: admin.id}, (err, adminPodcasts) => {
+      if(err){
+        return next(err);
+      }
+      UserPodcast.find({}, (err, userPodcasts) => {
+        if(err){
+          return next(err);
+        }
+        res.render('adminDashboard', { admin, adminPodcasts, userPodcasts });
+      })
+    })
   })
 })
 

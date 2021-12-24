@@ -10,5 +10,27 @@
   <h1>welcome admin</h1>
   <a href="/admin/logout">Logout</a>
   <a href="/podcast/<%= admin.id %>/new">add podcast</a>
+
+  <h2>admin podcasts</h2>
+  <% adminPodcasts.forEach(podcast => { %>
+    <div>
+      <p><%= podcast.title %></p>
+      <a href="/podcast/admin/<%= podcast.id %>/edit">edit</a>
+      <a href="/podcast/admin/<%= podcast.id %>/delete">delete</a>
+    </div>
+  <% }) %>
+  <h2>user podcasts</h2>
+  <% userPodcasts.forEach(podcast => { %>
+    <div>
+      <p><%= podcast.title %></p>
+      <% if(!podcast.isVerified){ %>
+        <a href="/podcast/<%= podcast.id %>/verify">verify for upload</a>
+        <a href="/podcast/<%= podcast.id %>/remove">take down podcast</a>
+      <% } %>
+      <% if(podcast.isVerified){ %>
+        <a href="/podcast/<%= podcast.id %>/remove">take down podcast</a>
+      <% } %>
+    </div>
+  <% }) %>
 </body>
 </html>
